@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 
+import com.ai.opt.sdk.util.StringUtil;
 import com.ai.runner.center.pay.web.business.payment.util.third.unionpay.sdk.HttpClient;
 import com.ai.runner.center.pay.web.business.payment.util.third.unionpay.sdk.SDKUtil;
-import com.ai.runner.utils.util.StringUtil;
 
 
 

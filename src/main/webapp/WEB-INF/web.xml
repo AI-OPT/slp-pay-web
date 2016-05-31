@@ -39,7 +39,7 @@
   </filter>
   <filter-mapping>
     <filter-name>ssoProxyFilter</filter-name>
-    <url-pattern>/manage/*</url-pattern>
+    <url-pattern>/manage1/*</url-pattern>
   </filter-mapping>
   <context-param>
     <param-name>contextConfigLocation</param-name>

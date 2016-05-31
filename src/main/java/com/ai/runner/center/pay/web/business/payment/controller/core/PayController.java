@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ai.opt.sdk.util.CollectionUtil;
+import com.ai.opt.sdk.util.StringUtil;
 import com.ai.runner.base.exception.BusinessException;
 import com.ai.runner.base.exception.SystemException;
 import com.ai.runner.center.pay.api.paycenter.param.TradeModifyReq;
@@ -26,8 +28,6 @@ import com.ai.runner.center.pay.web.system.configcenter.AbstractPayConfigManager
 import com.ai.runner.center.pay.web.system.constants.ExceptCodeConstants;
 import com.ai.runner.center.pay.web.system.constants.PayConstants;
 import com.ai.runner.center.pay.web.system.util.ConfigUtil;
-import com.ai.runner.utils.util.CollectionUtil;
-import com.ai.runner.utils.util.StringUtil;
 import com.alibaba.fastjson.JSON;
 
 /**
@@ -62,11 +62,11 @@ public class PayController extends TradeBaseController {
         String subject = paymentReqParam.getSubject();
         String requestSource = paymentReqParam.getRequestSource();
         String returnUrl = paymentReqParam.getReturnUrl();
-        String partnerId = this.getPartnerId(tenantId);
-        if(StringUtil.isBlank(partnerId)) {
-            LOG.error("未识别的合作方身份！租户ID： " + tenantId);
-            throw new BusinessException(ExceptCodeConstants.ILLEGAL_PARTNER, "未识别的合作方身份！");
-        }            
+        String partnerId = "";//this.getPartnerId(tenantId);
+//        if(StringUtil.isBlank(partnerId)) {
+//            LOG.error("未识别的合作方身份！租户ID： " + tenantId);
+//            throw new BusinessException(ExceptCodeConstants.ILLEGAL_PARTNER, "未识别的合作方身份！");
+//        }            
         this.createPaymentInfo(tenantId, orderId, orderAmount, subject, requestSource,
                 paymentReqParam.getNotifyUrl(), paymentReqParam.getMerchantUrl(), returnUrl,
                 partnerId);

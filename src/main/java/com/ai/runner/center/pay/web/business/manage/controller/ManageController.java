@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ai.paas.ipaas.dbs.util.CollectionUtil;
+import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
+import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.runner.center.common.api.tenant.interfaces.IGnTenantQuerySV;
 import com.ai.runner.center.common.api.tenant.param.GnTenantVo;
 import com.ai.runner.center.pay.api.tenantconfig.interfaces.ITenantConfigSV;
@@ -27,7 +28,6 @@ import com.ai.runner.center.pay.web.system.base.BaseController;
 import com.ai.runner.center.pay.web.system.constants.PayConstants;
 import com.ai.runner.center.pay.web.system.util.ConfigUtil;
 import com.ai.runner.center.pay.web.system.util.JSONUtil;
-import com.ai.runner.utils.util.DubboConsumerFactory;
 
 /**
  * 支付平台管理后台主Controller Date: 2015年10月10日 <br>
@@ -55,12 +55,12 @@ public class ManageController extends BaseController {
     public String index(HttpServletRequest request, HttpServletResponse response) throws Exception {
         LOG.info("后台管理页面首页..."); 
         /*1.查询租户信息*/
-        IGnTenantQuerySV gnTenantQuerySV = DubboConsumerFactory.getService("IGnTenantQuerySV");
-        List<GnTenantVo> tenantList = gnTenantQuerySV.getTenants();
-        if(!CollectionUtil.isEmpty(tenantList)){
-            request.setAttribute("tenantCount", tenantList.size());
-            request.setAttribute("tenantList", tenantList);
-        }
+//        IGnTenantQuerySV gnTenantQuerySV = DubboConsumerFactory.getService("IGnTenantQuerySV");
+//        List<GnTenantVo> tenantList = gnTenantQuerySV.getTenants();
+//        if(!CollectionUtil.isEmpty(tenantList)){
+//            request.setAttribute("tenantCount", tenantList.size());
+//            request.setAttribute("tenantList", tenantList);
+//        }
         return "/manage/index";
     }
 

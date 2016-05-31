@@ -4,12 +4,10 @@ import java.util.ResourceBundle;
 
 import org.junit.Test;
 
-import com.ai.runner.sdk.loader.Load2ConfigCenter;
-
 public class LoadConfigTest {
 
     public static void main(String[] args) {
-        Load2ConfigCenter.main(new String[]{"F:\\asiainfo\\myJob\\test"});
+        //Load2ConfigCenter.main(new String[]{"F:\\asiainfo\\myJob\\test"});
     }
     
     @Test

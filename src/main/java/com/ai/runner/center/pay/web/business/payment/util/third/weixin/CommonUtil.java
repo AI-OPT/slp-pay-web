@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
+import com.ai.opt.sdk.util.DateUtil;
 import com.ai.runner.center.pay.web.system.configcenter.WeixinConfigManager;
 import com.ai.runner.center.pay.web.system.constants.PayConstants;
 import com.ai.runner.center.pay.web.system.util.ConfigUtil;
@@ -20,7 +21,6 @@ import com.ai.runner.center.pay.web.system.util.HTTPSUtil;
 import com.ai.runner.center.pay.web.system.util.MD5;
 import com.ai.runner.center.pay.web.system.util.PaymentSeqUtil;
 import com.ai.runner.center.pay.web.system.util.XMLUtil;
-import com.ai.runner.utils.util.DateUtil;
 
 
 /**

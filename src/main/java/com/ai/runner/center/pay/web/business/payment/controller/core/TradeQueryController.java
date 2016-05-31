@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ai.opt.sdk.util.StringUtil;
 import com.ai.runner.base.exception.BusinessException;
 import com.ai.runner.base.exception.SystemException;
 import com.ai.runner.center.pay.api.tradequery.param.TradeRecord;
@@ -20,7 +21,6 @@ import com.ai.runner.center.pay.web.business.payment.util.core.VerifyUtil;
 import com.ai.runner.center.pay.web.system.constants.ExceptCodeConstants;
 import com.ai.runner.center.pay.web.system.constants.PayConstants;
 import com.ai.runner.center.pay.web.system.util.ConfigUtil;
-import com.ai.runner.utils.util.StringUtil;
 import com.alibaba.fastjson.JSON;
 
 /**

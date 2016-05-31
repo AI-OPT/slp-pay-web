@@ -3,10 +3,11 @@ package com.ai.runner.center.pay.web.system.util;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
+import com.ai.opt.sdk.components.ccs.CCSClientFactory;
+import com.ai.opt.sdk.util.StringUtil;
+import com.ai.paas.ipaas.ccs.IConfigClient;
+import com.ai.paas.ipaas.ccs.constants.ConfigException;
 import com.ai.runner.base.exception.SystemException;
-import com.ai.runner.sdk.configcenter.builder.IConfigCenterBuilder;
-import com.ai.runner.sdk.configcenter.factory.ConfigCenterBuilderFactory;
-import com.ai.runner.utils.util.StringUtil;
 
 /**
  * 支付中心配置工具类
@@ -26,7 +27,7 @@ public final class ConfigUtil {
     /**
      * 支付中心配置根路径
      */
-    private static final String PAY_CONFIG_PATH = "/com/ai/runner/pay-center/config/";
+    private static final String PAY_CONFIG_PATH = "/com/ai/opt/pay-center/config/";
 
     /**
      * 多租户公用配置目录名称
@@ -92,15 +93,19 @@ public final class ConfigUtil {
         }
 
         /* 1. 获取配置中心客户端服务 */
-        IConfigCenterBuilder configCenterBuilder = ConfigCenterBuilderFactory
-                .getConfigCenterBuilder();
-        if (configCenterBuilder == null) {
+        IConfigClient client = CCSClientFactory.getDefaultConfigClient();
+        if (client == null) {
             throw new SystemException("获取配置中心客户端服务失败");
         }
 
         /* 2. 获取支付中心配置KEY树级路径 */
         String path = PAY_CONFIG_PATH + tenantId + SEPARATOR + payOrgCode;
-        String confs = configCenterBuilder.getConfigCenterClient().get(path);
+        String confs;
+		try {
+			confs = client.get(path);
+		} catch (ConfigException e) {
+			 throw new SystemException("获取不到此路径[" + path + "下的配置信息");
+		}
         if (StringUtil.isBlank(confs)) {
             throw new SystemException("获取不到此路径[" + path + "下的配置信息");
         }
@@ -158,19 +163,23 @@ public final class ConfigUtil {
      */
     public static void addProperty(String tenantId, String payOrgCode, String config) {
         /* 1. 获取配置中心客户端服务 */
-        IConfigCenterBuilder configCenterBuilder = ConfigCenterBuilderFactory
-                .getConfigCenterBuilder();
-        if (configCenterBuilder == null) {
+    	IConfigClient client = CCSClientFactory.getDefaultConfigClient();
+        if (client == null) {
             throw new SystemException("获取配置中心客户端服务失败");
         }
 
         /* 2. 获取支付中心配置KEY树级路径 */
         String path = PAY_CONFIG_PATH + tenantId + SEPARATOR + payOrgCode;
-        if (!configCenterBuilder.getConfigCenterClient().exists(path)) {
-            configCenterBuilder.getConfigCenterClient().add(path, config);
-        } else {
-            configCenterBuilder.getConfigCenterClient().modify(path, config);
-        }
+        try {
+			if (!client.exists(path)) {
+				client.add(path, config);
+			} else {
+				client.modify(path, config);
+			}
+		} catch (ConfigException e) { 
+			LOG.info("添加配置失败：" + path + ":" + config);
+			
+		}
 
         LOG.info("添加配置成功：" + path + ":" + config);
     }

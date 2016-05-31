@@ -3,13 +3,14 @@ package com.ai.runner.center.pay.web.business.payment.service.impl;
 import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 
+import com.ai.opt.sdk.util.StringUtil;
 import com.ai.runner.base.exception.SystemException;
 import com.ai.runner.center.pay.web.business.payment.model.TradeQueryRes;
 import com.ai.runner.center.pay.web.business.payment.service.interfaces.ITradeQuerySV;
@@ -18,7 +19,6 @@ import com.ai.runner.center.pay.web.system.configcenter.WeixinConfigManager;
 import com.ai.runner.center.pay.web.system.constants.ExceptCodeConstants;
 import com.ai.runner.center.pay.web.system.constants.PayConstants;
 import com.ai.runner.center.pay.web.system.util.ConfigUtil;
-import com.ai.runner.utils.util.StringUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
