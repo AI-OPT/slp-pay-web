@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>RUNNER-PAY</display-name>
-  <filter>
+  <!--filter>
     <filter-name>xxs-firewall</filter-name>
     <filter-class>com.ai.net.xss.filter.XSSFilter</filter-class>
     <init-param>
@@ -12,7 +12,7 @@
   <filter-mapping>
     <filter-name>xxs-firewall</filter-name>
     <url-pattern>/*</url-pattern>
-  </filter-mapping>
+  </filter-mapping-->
   <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -29,7 +29,7 @@
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  <filter>
+  <!-- filter>
     <filter-name>ssoProxyFilter</filter-name>
     <filter-class>com.ai.runner.center.sso.client.filter.FilterChainProxy</filter-class>
     <init-param>
@@ -40,7 +40,7 @@
   <filter-mapping>
     <filter-name>ssoProxyFilter</filter-name>
     <url-pattern>/manage1/*</url-pattern>
-  </filter-mapping>
+  </filter-mapping-->
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
