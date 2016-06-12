@@ -444,7 +444,8 @@ public class AlipayController extends TradeBaseController {
             
             String[] orderInfoArray = this.splitTradeOrderId(out_trade_no);
             String tenantId = orderInfoArray[0]; 
-            String orderId = orderInfoArray[1]; 
+//            String orderId = orderInfoArray[1]; 
+            String orderId = out_trade_no; 
             TradeRecord tradeRecord = this.queryTradeRecord(tenantId, orderId);
             if(tradeRecord == null) {
                 LOG.error("支付宝wap前台通知出错，获取订单信息失败： 租户标识： " + tenantId + " ，订单号： " + orderId);
