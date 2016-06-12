@@ -35,6 +35,7 @@ import com.ai.runner.center.pay.web.system.configcenter.YlPayConfigManager;
 import com.ai.runner.center.pay.web.system.constants.ExceptCodeConstants;
 import com.ai.runner.center.pay.web.system.constants.PayConstants;
 import com.ai.runner.center.pay.web.system.util.AmountUtil;
+import com.ai.runner.center.pay.web.system.util.ConfigFromFileUtil;
 import com.ai.runner.center.pay.web.system.util.ConfigUtil;
 import com.alibaba.fastjson.JSON;
 
@@ -191,9 +192,8 @@ public class YlPayController extends TradeBaseController {
             }
 
             String tradeOrderId = params.get("orderId");
-            String[] orderInfoArray = this.splitTradeOrderId(tradeOrderId);
-            String tenantId = orderInfoArray[0];
-            String orderId = orderInfoArray[1];
+            String tenantId = ConfigFromFileUtil.getProperty("TENANT_ID");//orderInfoArray[0]; 
+            String orderId = tradeOrderId;//orderInfoArray[1]; 
             TradeRecord tradeRecord = this.queryTradeRecord(tenantId, orderId);
             if (tradeRecord == null) {
                 LOG.error("银联手机网页支付前台通知出错，获取订单信息失败： 租户标识： " + tenantId + " ，订单号： " + orderId);
@@ -250,9 +250,8 @@ public class YlPayController extends TradeBaseController {
             }
 
             String tradeOrderId = params.get("orderId");
-            String[] orderInfoArray = this.splitTradeOrderId(tradeOrderId);
-            String tenantId = orderInfoArray[0];
-            String orderId = orderInfoArray[1];
+            String tenantId = ConfigFromFileUtil.getProperty("TENANT_ID");//orderInfoArray[0]; 
+            String orderId = tradeOrderId;//orderInfoArray[1]; 
             TradeRecord tradeRecord = this.queryTradeRecord(tenantId, orderId);
             if (tradeRecord == null) {
                 LOG.error("银联移动支付后台通知出错，获取订单信息失败： 租户标识： " + tenantId + " ，订单号： " + orderId);
@@ -566,9 +565,8 @@ public class YlPayController extends TradeBaseController {
             }
 
             String tradeOrderId = params.get("orderId");
-            String[] orderInfoArray = this.splitTradeOrderId(tradeOrderId);
-            String tenantId = orderInfoArray[0];
-            String orderId = orderInfoArray[1];
+            String tenantId = ConfigFromFileUtil.getProperty("TENANT_ID");//orderInfoArray[0]; 
+            String orderId = tradeOrderId;//orderInfoArray[1]; 
             // String tenantId = params.get("reqReserved");
             TradeRecord tradeRecord = this.queryTradeRecord(tenantId, orderId);
             if (tradeRecord == null) {
@@ -766,9 +764,8 @@ public class YlPayController extends TradeBaseController {
             }
 
             String tradeOrderId = params.get("orderId");
-            String[] orderInfoArray = this.splitTradeOrderId(tradeOrderId);
-            String tenantId = orderInfoArray[0];
-            String orderId = orderInfoArray[1];
+            String tenantId = ConfigFromFileUtil.getProperty("TENANT_ID");//orderInfoArray[0]; 
+            String orderId = tradeOrderId;//orderInfoArray[1]; 
             // String tenantId = params.get("reqReserved");
             TradeRecord tradeRecord = this.queryTradeRecord(tenantId, orderId);
             if (tradeRecord == null) {

@@ -280,15 +280,15 @@ public class TradeBaseController extends BaseController {
      * @ApiDocMethod
      * @ApiCode
      */
-    protected String[] splitTradeOrderId(String tradeOrderId) {
-        String partnerId = tradeOrderId.substring(0, 5);
-        String merchantOrderId = tradeOrderId.substring(5);
-        String tenantId = getTenantId(partnerId);
-        String[] result = new String[2];
-        result[0] = tenantId;
-        result[1] = merchantOrderId;
-        return result;
-    }
+//    protected String[] splitTradeOrderId(String tradeOrderId) {
+//        String partnerId = tradeOrderId.substring(0, 5);
+//        String merchantOrderId = tradeOrderId.substring(5);
+//        String tenantId = getTenantId(partnerId);
+//        String[] result = new String[2];
+//        result[0] = tenantId;
+//        result[1] = merchantOrderId;
+//        return result;
+//    }
     
     protected String getTenantId(String partnerId) {
         PartnerInfoParam param = new PartnerInfoParam();

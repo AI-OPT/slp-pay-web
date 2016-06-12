@@ -40,6 +40,7 @@ import com.ai.runner.center.pay.web.system.configcenter.AliPayConfigManager;
 import com.ai.runner.center.pay.web.system.constants.ExceptCodeConstants;
 import com.ai.runner.center.pay.web.system.constants.PayConstants;
 import com.ai.runner.center.pay.web.system.util.AmountUtil;
+import com.ai.runner.center.pay.web.system.util.ConfigFromFileUtil;
 import com.ai.runner.center.pay.web.system.util.ConfigUtil;
 import com.ai.runner.center.pay.web.system.util.XMLUtil;
 
@@ -220,9 +221,9 @@ public class AlipayController extends TradeBaseController {
                 return;
             } 
             
-            String[] orderInfoArray = this.splitTradeOrderId(out_trade_no);
-            String tenantId = orderInfoArray[0]; 
-            String orderId = orderInfoArray[1]; 
+//            String[] orderInfoArray = this.splitTradeOrderId(out_trade_no);
+            String tenantId = ConfigFromFileUtil.getProperty("TENANT_ID");//orderInfoArray[0]; 
+            String orderId = out_trade_no;//orderInfoArray[1]; 
             TradeRecord tradeRecord = this.queryTradeRecord(tenantId, orderId);
             if(tradeRecord == null) {
                 LOG.error("支付宝WEB后台通知出错，获取订单信息失败： 租户标识： " + tenantId + " ，订单号： " + orderId);
@@ -279,8 +280,8 @@ public class AlipayController extends TradeBaseController {
                 payStates = PayConstants.ReturnCode.SUCCESS;
             }
             
-            String[] orderInfoArray = this.splitTradeOrderId(out_trade_no);
-            String tenantId = orderInfoArray[0]; 
+//            String[] orderInfoArray = this.splitTradeOrderId(out_trade_no);
+            String tenantId = ConfigFromFileUtil.getProperty("TENANT_ID");//orderInfoArray[0]; 
             String orderId = out_trade_no;//orderInfoArray[1]; 
             TradeRecord tradeRecord = this.queryTradeRecord(tenantId, orderId);
             if(tradeRecord == null) {
@@ -442,10 +443,9 @@ public class AlipayController extends TradeBaseController {
                 payStates = PayConstants.ReturnCode.SUCCESS;
             }
             
-            String[] orderInfoArray = this.splitTradeOrderId(out_trade_no);
-            String tenantId = orderInfoArray[0]; 
-//            String orderId = orderInfoArray[1]; 
-            String orderId = out_trade_no; 
+//            String[] orderInfoArray = this.splitTradeOrderId(out_trade_no);
+            String tenantId = ConfigFromFileUtil.getProperty("TENANT_ID");//orderInfoArray[0]; 
+            String orderId = out_trade_no;//orderInfoArray[1]; 
             TradeRecord tradeRecord = this.queryTradeRecord(tenantId, orderId);
             if(tradeRecord == null) {
                 LOG.error("支付宝wap前台通知出错，获取订单信息失败： 租户标识： " + tenantId + " ，订单号： " + orderId);
@@ -517,9 +517,8 @@ public class AlipayController extends TradeBaseController {
                 return;
             }
                         
-            String[] orderInfoArray = this.splitTradeOrderId(out_trade_no);
-            String tenantId = orderInfoArray[0]; 
-            String orderId = orderInfoArray[1]; 
+            String tenantId = ConfigFromFileUtil.getProperty("TENANT_ID");//orderInfoArray[0]; 
+            String orderId = out_trade_no;//orderInfoArray[1]; 
             TradeRecord tradeRecord = this.queryTradeRecord(tenantId, orderId);
             if(tradeRecord == null) {
                 LOG.error("支付宝wap后台通知出错，获取订单信息失败： 租户标识： " + tenantId + " ，订单号： " + orderId);

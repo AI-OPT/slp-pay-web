@@ -31,6 +31,7 @@ import com.ai.runner.center.pay.web.system.configcenter.XyPayConfigManager;
 import com.ai.runner.center.pay.web.system.constants.ExceptCodeConstants;
 import com.ai.runner.center.pay.web.system.constants.PayConstants;
 import com.ai.runner.center.pay.web.system.util.AmountUtil;
+import com.ai.runner.center.pay.web.system.util.ConfigFromFileUtil;
 import com.ai.runner.center.pay.web.system.util.ConfigUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.cib.cap4i.appsvr.base.base.AppResponse;
@@ -135,9 +136,8 @@ public class XyPayController extends TradeBaseController {
                     payStates = PayConstants.ReturnCode.SUCCESS;
                 } 
                 /* 解析第三方平台返回的orderId */
-                String[] orderInfoArray = this.splitTradeOrderId(order_no);
-                String tenantId = orderInfoArray[0];
-                String orderId = orderInfoArray[1];
+                String tenantId = ConfigFromFileUtil.getProperty("TENANT_ID");//orderInfoArray[0]; 
+                String orderId = order_no;//orderInfoArray[1]; 
                 TradeRecord tradeRecord = this.queryTradeRecord(tenantId, orderId);
                 if(tradeRecord == null) {
                     LOG.error("兴业码支付后台通知出错，获取订单信息失败： 租户标识： " + tenantId + " ，订单号： " + orderId);

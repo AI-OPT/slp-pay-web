@@ -38,6 +38,7 @@ import com.ai.runner.center.pay.web.system.configcenter.WeixinConfigManager;
 import com.ai.runner.center.pay.web.system.constants.ExceptCodeConstants;
 import com.ai.runner.center.pay.web.system.constants.PayConstants;
 import com.ai.runner.center.pay.web.system.util.AmountUtil;
+import com.ai.runner.center.pay.web.system.util.ConfigFromFileUtil;
 import com.ai.runner.center.pay.web.system.util.ConfigUtil;
 import com.ai.runner.center.pay.web.system.util.HTTPSUtil;
 import com.ai.runner.center.pay.web.system.util.XMLUtil;
@@ -196,9 +197,9 @@ public class WeixinPayController extends TradeBaseController {
                     payStates = PayConstants.ReturnCode.SUCCESS;
                 }
                 /* 解析第三方平台返回的orderId */
-                String[] orderInfoArray = this.splitTradeOrderId(out_trade_no);
-                String tenantId = orderInfoArray[0];
-                String orderId = orderInfoArray[1];
+//                String[] orderInfoArray = this.splitTradeOrderId(out_trade_no);
+                String tenantId = ConfigFromFileUtil.getProperty("TENANT_ID");//orderInfoArray[0]; 
+                String orderId = out_trade_no;//orderInfoArray[1]; 
                 TradeRecord tradeRecord = this.queryTradeRecord(tenantId, orderId);
                 if (tradeRecord == null) {
                     LOG.error("微信扫码支付后台通知出错，获取订单信息失败： 租户标识： " + tenantId + " ，订单号： " + orderId);
