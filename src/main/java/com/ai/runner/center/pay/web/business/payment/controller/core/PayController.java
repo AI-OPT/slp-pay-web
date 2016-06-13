@@ -63,6 +63,10 @@ public class PayController extends TradeBaseController {
         String requestSource = paymentReqParam.getRequestSource();
         String returnUrl = paymentReqParam.getReturnUrl();
         String partnerId = "";//this.getPartnerId(tenantId);
+        String serverType = ConfigUtil.getTenantCommonProperty(tenantId, PayConstants.SERVER_TYPE);
+        if("ISTEST".equals(serverType)){
+            orderAmount = "0.01";
+        }
 //        if(StringUtil.isBlank(partnerId)) {
 //            LOG.error("未识别的合作方身份！租户ID： " + tenantId);
 //            throw new BusinessException(ExceptCodeConstants.ILLEGAL_PARTNER, "未识别的合作方身份！");
