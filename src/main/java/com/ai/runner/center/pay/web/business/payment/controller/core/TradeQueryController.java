@@ -49,11 +49,11 @@ public class TradeQueryController extends TradeBaseController {
         this.validateTradeQueryReq(tradeQueryReqParam);
         String tenantId = tradeQueryReqParam.getTenantId();
         String orderId = tradeQueryReqParam.getOrderId();
-        String partnerId = this.getPartnerId(tenantId);
-        if (StringUtil.isBlank(partnerId)) {
-            LOG.error("未识别的合作方身份！租户ID： " + tenantId);
-            throw new BusinessException(ExceptCodeConstants.ILLEGAL_PARTNER, "未识别的合作方身份！");
-        }
+//        String partnerId = this.getPartnerId(tenantId);
+//        if (StringUtil.isBlank(partnerId)) {
+//            LOG.error("未识别的合作方身份！租户ID： " + tenantId);
+//            throw new BusinessException(ExceptCodeConstants.ILLEGAL_PARTNER, "未识别的合作方身份！");
+//        }
 
         TradeRecord tradeRecord = this.queryTradeRecord(tenantId, orderId);
         if (tradeRecord == null) {
