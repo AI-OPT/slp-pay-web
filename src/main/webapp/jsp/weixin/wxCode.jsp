@@ -76,7 +76,7 @@
    	<input type="hidden" name="orderId" value="${orderId }"/>
    	<input type="hidden" name="subject" value="${subject }"/>
    	<input type="hidden" name="notifyUrl" value="${notifyUrl}"/>
-   	<input type="hidden" name="orderAmount" value="${orderAmount }"/>
+   	<input type="hidden" name="orderAmount" value="${orderAmount/1000 }"/>
    	<input type="hidden" name="returnUrl" value="${returnUrl }"/>
    	<input type="hidden" name="checkFlag" value="${checkFlag }"/>
    	<input type="hidden" name="requestSource" value="${requestSource }"/>
