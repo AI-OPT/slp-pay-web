@@ -109,6 +109,7 @@ public class WeixinPayController extends TradeBaseController {
         infoMd5 = VerifyUtil.encodeParam(infoStr, partnerkey);
         request.setAttribute("codeurl", codeUrl);
         request.setAttribute("orderId", orderId);
+        request.setAttribute("checkFlag", "0");
         request.setAttribute("tenantId", tenantId);
         request.setAttribute("orderAmount", tradeRecord.getPayAmount());
         request.setAttribute("requestSource", tradeRecord.getRequestSource());

@@ -61,6 +61,16 @@ public class PaymentReqParam implements Serializable {
      */
     private String payOrgCode;
     
+    private String checkFlag ;
+    
+    public String getCheckFlag() {
+        return checkFlag;
+    }
+
+    public void setCheckFlag(String checkFlag) {
+        this.checkFlag = checkFlag;
+    }
+
     /**
      * 加密信息
      */

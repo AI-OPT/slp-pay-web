@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.elasticsearch.common.cli.CheckFileCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -217,9 +218,11 @@ public class PayController extends TradeBaseController {
                 + paymentReqParam.getNotifyUrl() + VerifyUtil.SEPARATOR
                 + tenantId;
         String key = ConfigUtil.getTenantCommonProperty(tenantId, PayConstants.REQUEST_KEY);
-        if(!VerifyUtil.checkParam(infoStr, paymentReqParam.getInfoMd5(), key)) {
-            LOG.error("验签失败：传入的参数已被篡改！" + infoStr);
-            throw new BusinessException(ExceptCodeConstants.ILLEGAL_PARAM, "传入的支付请求参数非法,参数有误或已被篡改！");
+        if(!"0".equals(paymentReqParam.getCheckFlag())){
+            if(!VerifyUtil.checkParam(infoStr, paymentReqParam.getInfoMd5(), key)) {
+                LOG.error("验签失败：传入的参数已被篡改！" + infoStr);
+                throw new BusinessException(ExceptCodeConstants.ILLEGAL_PARAM, "传入的支付请求参数非法,参数有误或已被篡改！");
+            }
         }
     }
     

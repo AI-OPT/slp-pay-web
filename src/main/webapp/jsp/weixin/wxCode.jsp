@@ -78,6 +78,7 @@
    	<input type="hidden" name="notifyUrl" value="${notifyUrl}"/>
    	<input type="hidden" name="orderAmount" value="${orderAmount }"/>
    	<input type="hidden" name="returnUrl" value="${returnUrl }"/>
+   	<input type="hidden" name="checkFlag" value="${checkFlag }"/>
    	<input type="hidden" name="requestSource" value="${requestSource }"/>
    	<input type="hidden" name="merchantUrl" value="${merchantUrl }"/>
    	<input type="hidden" name="payChannel" value="${payChannel }"/>
